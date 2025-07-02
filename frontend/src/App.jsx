@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 function App() {
     const [setting, setSetting] = useState({ key: "site_title", value: "" });
+    const [buttonText, setButtonText] = useState("Сохранить");
 
     useEffect(() => {
         fetch("http://localhost:8080/api/settings")
@@ -24,18 +25,26 @@ function App() {
             body: JSON.stringify(setting),
         })
             .then(response => response.json())
-            .then(data => alert("Сохранено!"))
+            .then(data => setButtonText("Сохранено"))
             .catch(error => console.error("Ошибка:", error));
-
-
-
     };
 
     return (
         <div>
             <div className="container">
-                <input className="input" value={setting.value} onChange={handleChange}/>
-                <button className="save-btn"onClick={handleSave}>Сохранить</button>
+                <input
+                    placeholder="Запишите сумму"
+                    className="input"
+                    value={setting.value}
+                    onChange={handleChange}
+                />
+                <button
+                    id="btn-save"
+                    className="save-btn"
+                    onClick={handleSave}
+                >
+                    {buttonText}
+                </button>
             </div>
         </div>
     );

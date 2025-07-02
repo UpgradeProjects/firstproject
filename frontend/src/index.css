@@ -58,3 +58,19 @@ body {
   scale: 1.2;
 }
 
+get-result-btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: ease, 20ms;
+}
+
+get-result-btn {
+  background-color: #0056b3;
+  scale: 1.2;
+}
