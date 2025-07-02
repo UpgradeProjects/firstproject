@@ -4,13 +4,7 @@ function App() {
     const [setting, setSetting] = useState({ value: "" });
     const [buttonText, setButtonText] = useState("Сохранить");
 
-    useEffect(() => {
-        fetch("http://localhost:8080/api/settings")
-            .then((res) => res.json())
-            .then((data) => {
-                if (data) setSetting(data);
-            });
-    }, []);
+
 
     const handleChange = (e) => {
         setSetting({ ...setting, value: e.target.value });
@@ -24,9 +18,11 @@ function App() {
             },
             body: JSON.stringify(setting),
         })
-            .then(response => response.json())
-            .then((data) => {
-                setButtonText("Созранено");
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Ошибка при сохранении");
+                }
+                setButtonText("Сохранено");
                 setTimeout(() => {
                     setButtonText("Сохранить");
                 }, 2000);
