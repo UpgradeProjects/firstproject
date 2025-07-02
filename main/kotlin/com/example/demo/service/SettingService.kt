@@ -22,5 +22,9 @@ class SettingService(private val settingRepository: SettingRepository) {
     fun getAllSettings(): List<Setting> {
         return settingRepository.findAll()
     }
+
+    fun saveSetting(setting: Setting) {
+        settingRepository.save(setting)
+    }
 }
 

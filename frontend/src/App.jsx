@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 function App() {
-    const [setting, setSetting] = useState({ key: "site_title", value: "" });
+    const [setting, setSetting] = useState({ value: "" });
     const [buttonText, setButtonText] = useState("Сохранить");
 
     useEffect(() => {
@@ -25,7 +25,13 @@ function App() {
             body: JSON.stringify(setting),
         })
             .then(response => response.json())
-            .then(data => setButtonText("Сохранено"))
+            .then((data) => {
+                setButtonText("Созранено");
+                setTimeout(() => {
+                    setButtonText("Сохранить");
+                }, 2000);
+            })
+
             .catch(error => console.error("Ошибка:", error));
     };
 
